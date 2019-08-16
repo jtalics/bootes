@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <title>TOSS - confirm</title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6LebYrIUAAAAAEsnKuKX0z1Ds4FIrF36qNIkVWEu'></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LebYrIUAAAAAEsnKuKX0z1Ds4FIrF36qNIkVWEu', {action: 'homepage'}).then(function(token) {
+                $('[name="recaptchaResponse"]').val(token);
+            });
+        });
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/toss">Thompson Organizational Solutions and Services - bit.ly/33AlSIu</a>
+</nav>
+
+<img src='/toss.jpg' alt='TOSS' width='400'>
+<br>
+<form action="#" th:action="@{/toss/submit}" th:object=${user} method='post'>
+<h1>Please confirm your information and click the Submit.</h1>
+<br>
+<p th:text="'First name: ' + ${user.firstName}" />
+<p th:text="'Last name: ' + ${user.lastName}" />
+<p th:text="'Email address: ' + ${user.emailAddress}" />
+<p th:text="'Comment: ' + ${user.comment}" />
+<br>
+<input type='submit' value='This is correct - submit'> &nbsp
+<a href="/toss">This is not correct - edit</a>
+<input type='hidden' name='firstName' th:value='${user.firstName}'>
+<input type='hidden' name='lastName' th:value='${user.lastName}'>
+<input type='hidden' name='emailAddress' th:value='${user.emailAddress}'>
+<input type='hidden' name='comment' th:value='${user.comment}'>
+<input type='hidden' name='recaptchaResponse'>
+</form>
+</body>
+</html>

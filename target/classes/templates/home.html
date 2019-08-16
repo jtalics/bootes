@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang='en' xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TOSS - submit</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6LebYrIUAAAAAEsnKuKX0z1Ds4FIrF36qNIkVWEu'></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LebYrIUAAAAAEsnKuKX0z1Ds4FIrF36qNIkVWEu', {action: 'homepage'}).then(function(token) {
+                $('[name="recaptchaResponse"]').val(token);
+            });
+        });
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href='https://www.facebook.com/Thompson-Organizational-Solutions-and-Services-417230382362166/'>TOSS on Facebook</a>
+</nav>
+<img src='toss.jpg' alt='TOSS' width='400'>
+<br>
+<h2>About TOSS</h2>
+Hello, and Welcome to Thompson Organizational Solutions and Services! We offer a multitude of services!
+
+<h2>Company Overview</h2>
+Started in 2019, Thompson Organizational Solutions and Services, strives to be a go to source for people needing specialty services in these fields.
+
+<h2>General Information</h2>
+We offer everything form helping downsize residences, to helping get rid of unwanted items. We offer competitive pricing for the DFW area. Our base services include, but are not limited to; Clutter management, downsizing items to match home size, helping some up with great organization solutions that fit your personal needs, estate sales, and a multitude of other helpful services.
+
+<h2>Products</h2>
+We offer a wide variety of organization, downsizing, and estate sale options.
+
+<h2>Contact TOSS</h2>
+Fill out the form below and click the Confirm button.
+<form action="#" th:action="@{/toss/confirm}" th:object=${user} method='post'>
+First name:
+<br>
+<input type='text' size=40 th:field="*{firstName}"/>
+<br>
+Last name:
+<br>
+<input type='text' size=40 th:field="*{lastName}"/>
+<br>
+Email:
+<br>
+<input type='text' size=40 th:field="*{emailAddress}"/>
+</br>
+Comment (describe your needs, deadlines, etc. ):
+<br>
+<textarea rows='4' cols='80' th:field="*{comment}"></textarea>
+<br>
+<input type='submit' value='Confirm'>
+<input type='hidden' name='recaptchaResponse'>
+</form>
+<p>
+<a >Find TOSS on Facebook too!</a>
+</p>
+</body>
+</html>
